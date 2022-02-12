@@ -4,7 +4,7 @@
 •	Joe Moon :: jmn5y@umsystem.edu <br>
 •	Nathan Cheney :: ncxn8@umsystem.edu <br>
 •	Keenan Flynn :: kpfxn8@umsystem.edu <br>
-•	Jasmine Naraine ::  <br>
+•	Jasmine Naraine :: jnytc@umsystem.edu <br>
 
 ## Project Description
 Semester project.  Description to follow.
