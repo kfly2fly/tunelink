@@ -1,0 +1,22 @@
+<form>
+  <input
+    type="text"
+    name="userId"
+    id="userId"
+    placeholder="Your User ID"
+    #user_id
+  />
+</form>
+
+<button (click)="getUserProfile()">Show User Profile</button>
+<button (click)="getUserArtists()">Listened Artists</button>
+<!-- <button (click)="getUserPlaylists()">Show User's Playlists</button>
+<button (click)="getPlaylistTracks()">Show Playlist Tracks</button> -->
+
+<div class="hidden" id="artists">
+  <h2>Artists listened to by the {{ userId }}</h2>
+
+  <div *ngFor="let artist of userArtist">
+    <div>{{ artist }}</div>
+  </div>
+</div>
