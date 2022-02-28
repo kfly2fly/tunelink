@@ -1,12 +1,43 @@
-#userInput {
-  display: flex;
-  flex-direction: row;
-}
-
-ul > li {
-  list-style-type: none;
-}
-
 .hidden {
   display: none;
+}
+/* Navbar */
+.TuneLink{
+  font-weight: bold;
+  font-style: oblique
+}
+/* Button */
+input {
+  width: 70%;
+   padding: 12px 20px; 
+   border-radius: 8px;
+
+}
+/* Form Background */
+form{
+  text-align: center;
+  width: 100%;
+  padding: 12px 20px;
+
+  background-color: #f5cac2;
+}
+.center{
+  align-items: center;
+  padding: 12px 360px;
+  
+}
+/* Button Background */
+button{
+  border-radius: 8px;
+  padding: 12px 28px;
+}
+
+body{
+  background-color: #303179;
+  
+}
+body::before{
+  
+  content: "🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 ";
+  
 }

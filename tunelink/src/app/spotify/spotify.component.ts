@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { IProfile } from 'src/spotify-profile';
 
 @Component({
   selector: 'app-spotify',
@@ -13,12 +12,8 @@ export class SpotifyComponent implements OnInit {
   private clientSecret: string = 'f3007731ce2742939c331ee1564ceb06';
   private accessToken: string = '';
   userId: string = '';
-  userName: string = '';
-  userImage: string = '';
-  userUrl: string = '';
   playlist_Id: string[] = [];
   userArtist: string[] = [];
-  initialView = true;
 
   constructor() { 
   }
@@ -42,16 +37,10 @@ export class SpotifyComponent implements OnInit {
     })
   }
 
-  getUserProfile = async () => {
+  getUserProfile = () => {
     this.userId = this.user_id.nativeElement.value;
-    if (this.userId != '' && this.initialView) {
-      this.initialView = false;
-      document.getElementById("profile")?.classList.toggle("hidden");
-      document.getElementById("options")?.classList.toggle("hidden");
-    }  
-    this.userArtist = [];
 
-    await fetch(`https://api.spotify.com/v1/users/${this.userId}`, {
+    fetch(`https://api.spotify.com/v1/users/${this.userId}`, {
       method: 'GET', 
       headers: {
           'Accept': 'application/json',
@@ -60,17 +49,7 @@ export class SpotifyComponent implements OnInit {
       }
     })
       .then((response) => response.json())
-      .then((data) => {
-        const userProfile: IProfile = {
-          display_name: data.display_name,
-          image: data.images.length > 0 ? data.images[0].url : '../../assets/spotify_logo.png',
-          spot_url: data.external_urls.spotify
-        }
-
-        this.userName = userProfile.display_name;
-        this.userImage = userProfile.image;
-        this.userUrl = userProfile.spot_url;
-      });  
+      .then((data) => console.log(data));
   }
 
   getUserPlaylists = () => {
@@ -85,7 +64,6 @@ export class SpotifyComponent implements OnInit {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         (data.items).forEach((result: any) => {
             this.playlist_Id.push(result.id);
         })
@@ -104,22 +82,20 @@ export class SpotifyComponent implements OnInit {
       })
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data);
           (data.items).forEach((result: any) => {
             let artist = result.track.album.artists[0].name;
             if ((this.userArtist).indexOf(artist) === -1) {
                 this.userArtist.push(artist);
             }
           })
-          // console.log(this.userArtist);
+          console.log(this.userArtist);
         });
     })
   }
 
-  getUserArtists = async () => {
+  async getUserArtists() {
     await this.getUserPlaylists();
     this.getPlaylistTracks();
-    
     document.getElementById("artists")?.classList.toggle("hidden");
   }
 }

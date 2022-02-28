@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+img{
+    background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; 
+  padding: 100px 100px; 
+  
+}
+body{
+    background-color: #52ab98;
+}
