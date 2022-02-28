@@ -1,22 +1,45 @@
-<form>
-  <input
-    type="text"
-    name="userId"
-    id="userId"
-    placeholder="Your User ID"
-    #user_id
-  />
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col" id="userInput">
+      <form>
+        <input
+          type="text"
+          name="userId"
+          id="userId"
+          placeholder="Your User ID"
+          #user_id
+        />
+      </form>
 
-<button (click)="getUserProfile()">Show User Profile</button>
-<button (click)="getUserArtists()">Listened Artists</button>
-<!-- <button (click)="getUserPlaylists()">Show User's Playlists</button>
-<button (click)="getPlaylistTracks()">Show Playlist Tracks</button> -->
+      <button (click)="getUserProfile()">Search</button>
+    </div>
+  </div>
 
-<div class="hidden" id="artists">
-  <h2>Artists listened to by the {{ userId }}</h2>
+  <div class="row hidden" id="profile">
+    <div class="col"><img src="{{ userImage }}" alt="" /></div>
+    <div class="col">
+      <ul>
+        <li>User name: {{ userName }}</li>
+        <li>
+          <a href="{{ userUrl }}" target="_blank">Go to Spotify Account</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row hidden" id="options">
+    <div class="col">
+      <button (click)="getUserArtists()">Listened Artists</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="hidden" id="artists">
+        <h2>Artists listened to by {{ userId }}</h2>
 
-  <div *ngFor="let artist of userArtist">
-    <div>{{ artist }}</div>
+        <div *ngFor="let artist of userArtist">
+          <div>{{ artist }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

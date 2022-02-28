@@ -1,3 +1,12 @@
+#userInput {
+  display: flex;
+  flex-direction: row;
+}
+
+ul > li {
+  list-style-type: none;
+}
+
 .hidden {
   display: none;
 }
