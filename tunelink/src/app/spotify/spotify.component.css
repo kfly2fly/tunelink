@@ -1,43 +1,61 @@
+#userInput {
+  display: flex;
+  flex-direction: row;
+
+  background-color: #f5cac2;
+}
+
+#userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  font-size: 2em;
+}
+
+#artists {
+  color: #fff;
+}
+
+ul > li {
+  list-style-type: none;
+}
+
 .hidden {
   display: none;
 }
 /* Navbar */
-.TuneLink{
+.TuneLink {
   font-weight: bold;
-  font-style: oblique
+  font-style: oblique;
 }
 /* Button */
 input {
   width: 70%;
-   padding: 12px 20px; 
-   border-radius: 8px;
-
+  padding: 12px 20px;
+  border-radius: 8px;
 }
 /* Form Background */
-form{
+form {
   text-align: center;
   width: 100%;
   padding: 12px 20px;
-
-  background-color: #f5cac2;
 }
-.center{
+.center {
   align-items: center;
   padding: 12px 360px;
-  
 }
 /* Button Background */
-button{
+button {
   border-radius: 8px;
   padding: 12px 28px;
 }
 
-body{
+body {
   background-color: #303179;
-  
 }
-body::before{
-  
+body::before {
   content: "🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 🎧 🎤 🎼 🥁 🎹 ";
-  
 }
