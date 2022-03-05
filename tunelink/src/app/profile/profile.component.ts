@@ -1,17 +1,16 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { IProfile } from 'src/spotify-profile';
 
-@Component({
-  selector: 'app-spotify',
-  templateUrl: './spotify.component.html',
-  styleUrls: ['./spotify.component.css']
-})
-export class SpotifyComponent implements OnInit {
-  @ViewChild('user_id', { static: false }) user_id: ElementRef<HTMLInputElement> = {} as ElementRef;
 
-  private clientId: string = 'afbdab91d8214fbb979660933ccd05e1';
-  private clientSecret: string = 'f3007731ce2742939c331ee1564ceb06';
-  private accessToken: string = '';
+@Component({
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
+})
+export class ProfileComponent implements OnInit {
+  @ViewChild('user_id', { static: false }) user_id: ElementRef<HTMLInputElement> = {} as ElementRef;
+  @Input() accessToken: string = '';
+
   userId: string = '';
   userName: string = '';
   userImage: string = '';
@@ -20,26 +19,9 @@ export class SpotifyComponent implements OnInit {
   userArtist: string[] = [];
   initialView = true;
 
-  constructor() { 
-  }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getToken();
-  }
-
-  getToken = () => {
-    fetch('https://accounts.spotify.com/api/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + btoa(`${this.clientId}:${this.clientSecret}`)
-      },
-      body: 'grant_type=client_credentials'
-    })
-    .then(response => response.json())
-    .then(data => {
-      this.accessToken = data.access_token;
-    })
   }
 
   getUserProfile = () => {
@@ -48,8 +30,11 @@ export class SpotifyComponent implements OnInit {
       this.initialView = false;
       document.getElementById("profile")?.classList.toggle("hidden");
       document.getElementById("options")?.classList.toggle("hidden");
+      document.getElementById("inputHeader")?.classList.toggle("hidden");
+      document.getElementById("inputRow")?.classList.toggle("hidden");
     }  
     this.userArtist = [];
+    this.user_id.nativeElement.value = '';
 
     fetch(`https://api.spotify.com/v1/users/${this.userId}`, {
       method: 'GET', 
@@ -73,6 +58,7 @@ export class SpotifyComponent implements OnInit {
       }); 
   }
 
+  // From user's profile, generates an array of playlist IDs
   getUserPlaylists = () => {
     this.userId = this.user_id.nativeElement.value;
     return fetch(`https://api.spotify.com/v1/users/${this.userId}/playlists`, {
@@ -92,34 +78,4 @@ export class SpotifyComponent implements OnInit {
       });
   }
 
-  getPlaylistTracks = () => {
-    (this.playlist_Id).forEach(playlist => {
-      return fetch(`https://api.spotify.com/v1/playlists/${playlist}/tracks`, {
-        method: 'GET', 
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.accessToken}`
-        }
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // console.log(data);
-          (data.items).forEach((result: any) => {
-            let artist = result.track.album.artists[0].name;
-            if ((this.userArtist).indexOf(artist) === -1) {
-                this.userArtist.push(artist);
-            }
-          })
-          // console.log(this.userArtist);
-        });
-    })
-  }
-
-  getUserArtists = async () => {
-    await this.getUserPlaylists();
-    this.getPlaylistTracks();
-    
-    document.getElementById("artists")?.classList.toggle("hidden");
-  }
 }
