@@ -1,0 +1,13 @@
+#artists {
+  color: #fff;
+}
+
+#wrappper {
+  height: 100%;
+  width: 100%;
+}
+
+.center {
+  align-items: center;
+  padding: 12px 360px;
+}

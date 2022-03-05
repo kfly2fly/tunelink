@@ -1,0 +1,38 @@
+<div id="bg_art">
+  <div class="container">
+    <div class="row" id="inputHeader">
+      <div class="col text-center">
+        <h1>Let's get into it...</h1>
+      </div>
+    </div>
+    <div class="row" id="inputRow">
+      <div class="col" id="userInput">
+        <form>
+          <input
+            type="text"
+            name="userId"
+            id="userId"
+            placeholder="Enter a Spotify User ID"
+            #user_id
+          />
+        </form>
+
+        <button class="btn btn-dark" (click)="getUserProfile()">Search</button>
+      </div>
+    </div>
+
+    <div class="row hidden" id="profile">
+      <div class="col-3">
+        <img src="{{ userImage }}" alt="" class="img-thumbnail" />
+      </div>
+      <div class="col" id="userInfo">
+        <p>Hello {{ userName }}.</p>
+        <p>
+          Based on your
+          <a href="{{ userUrl }}" target="_blank">Spotify ID</a>, we've found
+          the following events that you might be interested in.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

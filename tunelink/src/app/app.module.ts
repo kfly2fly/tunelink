@@ -3,14 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpotifyComponent } from './spotify/spotify.component';
+import { SearchComponent } from './search/search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileComponent } from './profile/profile.component';
+import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpotifyComponent
+    SearchComponent,
+    ProfileComponent,
+    NavComponent,
+    HomeComponent,
+    AboutComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
