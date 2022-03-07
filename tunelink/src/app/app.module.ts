@@ -10,6 +10,7 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { ResultsComponent } from './results/results.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     NavComponent,
     HomeComponent,
     AboutComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,
