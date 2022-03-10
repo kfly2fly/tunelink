@@ -1,8 +1,11 @@
 <div id="bg_art">
   <div class="container">
-    <div class="row" id="inputHeader">
+    <div class="row p-5" id="inputHeader">
       <div class="col text-center">
-        <h1>Let's get into it...</h1>
+        <h3>
+          Using your Spotify ID, you can find upcoming performances of artists
+          you listen to.
+        </h3>
       </div>
     </div>
     <div class="row" id="inputRow">
@@ -17,7 +20,7 @@
           />
         </form>
 
-        <button class="btn btn-dark" (click)="getUserProfile()">Search</button>
+        <button class="btn btn-dark" (click)="getUserDetails()">Search</button>
       </div>
     </div>
 
@@ -29,9 +32,14 @@
         <p>Hello {{ userName }}.</p>
         <p>
           Based on your
-          <a href="{{ userUrl }}" target="_blank">Spotify ID</a>, we've found
-          the following events that you might be interested in.
+          <a href="{{ userUrl }}" target="_blank">Spotify profile</a>, we've
+          found the following events that you might be interested in.
         </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <app-results [artists]="userArtist"></app-results>
       </div>
     </div>
   </div>
