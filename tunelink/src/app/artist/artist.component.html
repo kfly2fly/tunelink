@@ -1,0 +1,44 @@
+<div id="bg_art">
+  <div class="container">
+    <div class="row p-5" id="inputHeader">
+      <div class="col text-center">
+        <h3>See upcoming events for an artist.</h3>
+      </div>
+    </div>
+    <div class="row" id="inputRow">
+      <div class="col" id="userInput">
+        <form>
+          <input
+            type="text"
+            name="artist"
+            id="artist"
+            placeholder="Enter the name of an artist or band"
+            #artist
+          />
+        </form>
+
+        <button class="btn btn-dark" (click)="getArtistEvents()">Search</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div *ngIf="artist_selection; then selectArtist"></div>
+        <div *ngIf="result_status; then validResults"></div>
+
+        <ng-template #selectArtist>
+          <div class="row artist-display" *ngFor="let artist of artist_match">
+            <div class="col">
+              <button (click)="getArtist(artist.id)">
+                {{ artist.artist_name }}
+              </button>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #validResults>
+          <app-results [event_list]="event_list"></app-results>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

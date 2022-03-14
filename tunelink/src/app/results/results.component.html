@@ -1,7 +1,50 @@
-<div class="container" id="tm-results">
+<div class="container" id="results">
   <div class="row">
-    <div class="col">Artist</div>
-    <div class="col">Performance Date</div>
-    <div class="col">Location</div>
+    <div class="col">
+      <table class="table">
+        <thead>
+          <th scope="col">Artist(s)</th>
+          <th scope="col">Event</th>
+          <th scope="col">Status</th>
+          <th scope="col">Performance Date</th>
+          <th scope="col">Venue</th>
+          <th scope="col">Location</th>
+        </thead>
+        <tbody>
+          <tr class="event_row" *ngFor="let event of event_list">
+            <!-- Displays all listed artists, if multiple at event -->
+            <td>
+              <tr *ngFor="let artist of event.artists">
+                {{
+                  artist
+                }}
+              </tr>
+            </td>
+
+            <td>{{ event.event_name }}</td>
+
+            <!-- Color coding for event status -->
+            <div *ngIf="event.status == 'cancelled'; then cancelled"></div>
+            <div *ngIf="event.status == 'ok'; then onSchedule"></div>
+            <div *ngIf="event.status == 'postponed'; then postponed"></div>
+
+            <ng-template #cancelled
+              ><td class="cancelled">Cancelled</td></ng-template
+            >
+            <ng-template #onSchedule
+              ><td class="onSchedule">On Schedule</td></ng-template
+            >
+            <ng-template #postponed
+              ><td class="postponed">Postponed</td></ng-template
+            >
+            <!-- End of color coding -->
+
+            <td>{{ event.date }}</td>
+            <td>{{ event.venue }}</td>
+            <td>{{ event.city }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
