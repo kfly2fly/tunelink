@@ -4,13 +4,17 @@ import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
+import { LocationComponent } from './location/location.component';
+import { ArtistComponent } from './artist/artist.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent} ,
+  { path: 'location', component: LocationComponent },
+  { path: 'artist', component: ArtistComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotfoundComponent }      // Wildcard Route
 ];

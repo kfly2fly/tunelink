@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ResultsComponent } from './results/results.component';
+import { LocationComponent } from './location/location.component';
+import { ArtistComponent } from './artist/artist.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { ResultsComponent } from './results/results.component';
     AboutComponent,
     NotfoundComponent,
     ResultsComponent,
+    LocationComponent,
+    ArtistComponent,
   ],
   imports: [
     BrowserModule,
