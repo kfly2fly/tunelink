@@ -11,6 +11,11 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ResultsComponent } from './results/results.component';
+<<<<<<< Updated upstream
+=======
+import { FooterComponent } from './footer/footer.component';
+import { ContactComponent } from './contact/contact.component';
+>>>>>>> Stashed changes
 
 
 @NgModule({
@@ -23,6 +28,11 @@ import { ResultsComponent } from './results/results.component';
     AboutComponent,
     NotfoundComponent,
     ResultsComponent,
+<<<<<<< Updated upstream
+=======
+    FooterComponent,
+    ContactComponent,
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
