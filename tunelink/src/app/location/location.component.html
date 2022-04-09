@@ -1,0 +1,43 @@
+<div id="bg_art">
+  <div class="container">
+    <div class="row p-5" id="inputHeader">
+      <div class="col text-center">
+        <h3>See upcoming events for a location.</h3>
+      </div>
+    </div>
+    <div class="row" id="inputRow">
+      <div class="col" id="userInput">
+        <form>
+          <input
+            type="text"
+            name="city"
+            id="city"
+            placeholder="Enter a City"
+            #city
+          />
+          <input
+            type="text"
+            name="country"
+            id="country"
+            placeholder="Enter the country"
+            #country
+          />
+        </form>
+
+        <button class="btn btn-dark" (click)="getLocationEvents()">
+          Search
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div *ngIf="result_status; then validResults"></div>
+
+        <ng-template #validResults>
+          <app-results [event_list]="event_list"></app-results>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

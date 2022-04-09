@@ -27,7 +27,7 @@
           >
         </div>
         <div class="col-sm-4 text-center">
-          <a routerLink="/location">
+          <a routerLink="/artist">
             <img
               src="../../assets/artist.png"
               class="image-thumbnail"
@@ -39,27 +39,4 @@
       </div>
     </div>
   </div>
-  <!-- Searches for events based on user's Spotify profile -->
-  <!-- <app-profile
-    [accessToken]="spotify_token"
-    (playlists)="saveUserPlaylists($event)"
-  ></app-profile> -->
-
-  <!-- <button (click)="eventsearch()">Events</button> -->
-  <!-- <div class="row hidden" id="options">
-      <div class="col">
-        <button (click)="getUserArtists()">Listened Artists</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="hidden" id="artists">
-          <h2>Artists listened to by {{ userId }}</h2>
-  
-          <div *ngFor="let artist of userArtist">
-            <div>{{ artist }}</div>
-          </div>
-        </div>
-      </div>
-    </div> -->
 </div>

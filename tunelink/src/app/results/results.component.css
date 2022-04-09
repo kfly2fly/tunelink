@@ -1,4 +1,27 @@
-#tm-results {
+#results {
   border: 3px solid #f00;
   background-color: antiquewhite;
+
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.event_row:nth-child(even) {
+  background: #ccc;
+}
+
+.event_row:nth-child(odd) {
+  background: #fff;
+}
+
+.cancelled {
+  background: #f00;
+}
+
+.onSchedule {
+  background: #0f0;
+}
+
+.postponed {
+  background: #ff0;
 }

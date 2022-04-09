@@ -1,4 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { IArtist } from 'src/artist-data';
+import { IEvent } from 'src/event-data';
 
 @Component({
   selector: 'app-results',
@@ -6,22 +8,30 @@ import { Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnInit {
-  @Input() artists: string[] = [];
+  @Input() userArtist: string[] = [];
+  @Input() artist_list: IArtist[] = [];
+  @Input() event_list: IEvent[] = [];
 
   private ticketmaster_consumerkey: string = "bWZmR0G8KZUu7LsDQATWUhJUQ8MnPCN6";
   private ticketmaster_consumersecret: string = "2yjbTtCMztfAZsQN";
-
+  
   constructor() { }
 
   ngOnInit(): void {
+    if (this.artist_list.length > 0) {
+      this.displayArtists();
+    }
+    else if (this.event_list.length > 0) {
+      this.displayEvents();
+    }
   }
 
-  // eventsearch = async () => {
-  //   return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=Madonna&apikey=${this.ticketmaster_consumerkey}`)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data);
-  //   });
-  // }  
+  displayArtists = () => {
+    console.log("artists");
+  }
+
+  displayEvents = () => {
+    console.log("events");
+  }
 
 }
