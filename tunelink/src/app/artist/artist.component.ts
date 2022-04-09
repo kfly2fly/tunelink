@@ -14,8 +14,9 @@ export class ArtistComponent implements OnInit {
   public artist_match: IArtist[] = [];
   public event_list: IEvent[] = [];
   public artist_list: string[] = [];
-  public artist_selection: boolean = false;
-  public result_status: boolean = false;
+  public artist_selection: boolean = false;     // selecting an artist
+  public result_status: boolean = false;        // results to display
+  public noResults: boolean = false;
   
   constructor() { 
   }
@@ -26,21 +27,38 @@ export class ArtistComponent implements OnInit {
   getArtistEvents = () => {
     this.reset();
 
-    // Get artist songkick ID number
+    // Get songkick ID number of all matching artists
     fetch(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${this.songkick_key}&query=${this.artist.nativeElement.value}`)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      console.log(data);        // TESTING
       (data.resultsPage.results.artist).forEach((result: any) => {
-        const newArtist: IArtist ={
-          artist_name: result.displayName,
-          id: result.id,
-          uri: result.uri
-        }
-        this.artist_match.push(newArtist);
+          // only returns artists who are performing
+          if (result.onTourUntil != null) {
+            const newArtist: IArtist = {
+            artist_name: result.displayName,
+            id: result.id,
+            uri: result.uri
+            }
+            this.artist_match.push(newArtist);
+          }
       });
-      this.artist_selection = true;   // Allow the use to select a returned artist
-      // TODO: auto select if only one
+
+    switch (this.artist_match.length) {
+        case 0:
+            // searched artist has no events
+            this.noResults = true;
+            break;
+        case 1:
+            // automatically display results if only one artist
+            this.artist_selection = false;
+            this.getArtist(this.artist_match[0].id);
+            this.result_status = true;
+            break;
+        default:
+            this.artist_selection = true;   // Allow the user to select a returned artist
+            break;
+    }
     });
   }
 
@@ -48,7 +66,6 @@ export class ArtistComponent implements OnInit {
     fetch(`https://api.songkick.com/api/3.0/artists/${artist_id}/calendar.json?apikey=${this.songkick_key}`)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       (data.resultsPage.results.event).forEach((result: any) => {
         // Capture all artists performing at event
         this.artist_list = [];
