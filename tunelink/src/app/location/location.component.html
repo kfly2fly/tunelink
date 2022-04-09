@@ -10,21 +10,14 @@
         <form>
           <input
             type="text"
-            name="city"
-            id="city"
-            placeholder="Enter a City"
-            #city
-          />
-          <input
-            type="text"
-            name="country"
-            id="country"
-            placeholder="Enter the country"
-            #country
+            name="location"
+            id="location"
+            placeholder="Enter a Location (City, State, Country, Venue, etc...)"
+            #place
           />
         </form>
 
-        <button class="btn btn-dark" (click)="getLocationEvents()">
+        <button class="btn btn-dark" (click)="getLocations()">
           Search
         </button>
       </div>
@@ -32,10 +25,26 @@
 
     <div class="row">
       <div class="col">
-        <div *ngIf="result_status; then validResults"></div>
+        <div *ngIf="location_status; then select_location"></div>
+        <div *ngIf="events_status; then valid_events"></div>
+        <div *ngIf="no_location; then no_locations"></div>
 
-        <ng-template #validResults>
+        <ng-template #select_location>
+          <div class="row location-display" *ngFor="let location of location_results">
+            <div class="col">
+              <button (click)="getLocationEvents(location.name, location.lat, location.long)">
+                {{ location.name }}
+              </button>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #valid_events>
           <app-results [event_list]="event_list"></app-results>
+        </ng-template>
+
+        <ng-template #no_locations>
+            <div><h3>Your search result returned no hits.  Try again.</h3></div>
         </ng-template>
       </div>
     </div>
