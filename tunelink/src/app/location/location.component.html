@@ -1,52 +1,9 @@
 <div id="bg_art">
   <div class="container">
-    <div class="row p-5" id="inputHeader">
+      <div class="row p-5">
       <div class="col text-center">
         <h3>See upcoming events for a location.</h3>
       </div>
     </div>
-    <div class="row" id="inputRow">
-      <div class="col" id="userInput">
-        <form>
-          <input
-            type="text"
-            name="location"
-            id="location"
-            placeholder="Enter a Location (City, State, Country, Venue, etc...)"
-            #place
-          />
-        </form>
-
-        <button class="btn btn-dark" (click)="getLocations()">
-          Search
-        </button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <div *ngIf="location_status; then select_location"></div>
-        <div *ngIf="events_status; then valid_events"></div>
-        <div *ngIf="no_location; then no_locations"></div>
-
-        <ng-template #select_location>
-          <div class="row location-display" *ngFor="let location of location_results">
-            <div class="col">
-              <button (click)="getLocationEvents(location.name, location.lat, location.long)">
-                {{ location.name }}
-              </button>
-            </div>
-          </div>
-        </ng-template>
-
-        <ng-template #valid_events>
-          <app-results [event_list]="event_list"></app-results>
-        </ng-template>
-
-        <ng-template #no_locations>
-            <div><h3>Your search result returned no hits.  Try again.</h3></div>
-        </ng-template>
-      </div>
-    </div>
-  </div>
+    <app-location-search [external]="external"></app-location-search>
 </div>

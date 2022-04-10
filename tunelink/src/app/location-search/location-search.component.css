@@ -1,0 +1,27 @@
+button {
+  border-radius: 8px;
+  padding: 0.5em 1em;
+}
+
+form {
+  text-align: center;
+  width: 100%;
+  padding: 0 0;
+}
+
+h3 {
+  color: #fff;
+  text-align: center;
+}
+
+input {
+  width: 70%;
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+
+#userInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
