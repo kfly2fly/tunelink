@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { LocationComponent } from './location/location.component';
 import { ArtistComponent } from './artist/artist.component';
+import { LocationSearchComponent } from './location-search/location-search.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ArtistComponent } from './artist/artist.component';
     ContactComponent,
     LocationComponent,
     ArtistComponent,
+    LocationSearchComponent,
   ],
   imports: [
     BrowserModule,

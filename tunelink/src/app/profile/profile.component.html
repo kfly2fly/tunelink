@@ -1,45 +1,57 @@
 <div id="bg_art">
   <div class="container">
-    <div class="row p-5" id="inputHeader">
-      <div class="col text-center">
-        <h3>
-          Using your Spotify ID, you can find upcoming performances of artists
-          you listen to.
-        </h3>
+    <div *ngIf="show_search">
+      <div class="row p-5">
+        <div class="col text-center">
+          <h3>
+            Using your Spotify ID, you can find upcoming performances of artists
+            you listen to.
+          </h3>
+        </div>
       </div>
-    </div>
-    <div class="row" id="inputRow">
-      <div class="col" id="userInput">
-        <form>
-          <input
-            type="text"
-            name="userId"
-            id="userId"
-            placeholder="Enter a Spotify User ID"
-            #user_id
-          />
-        </form>
+      <div class="row">
+        <div class="col" id="userInput">
+          <form>
+            <input
+              type="text"
+              name="userId"
+              id="userId"
+              placeholder="Enter a Spotify User ID"
+              #user_id
+            />
+          </form>
 
-        <button class="btn btn-dark" (click)="getUserDetails()">Search</button>
+          <button class="btn btn-dark" (click)="getUserDetails()">
+            Search
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="row hidden" id="profile">
-      <div class="col-3">
-        <img src="{{ userImage }}" alt="" class="img-thumbnail" />
-      </div>
-      <div class="col" id="userInfo">
-        <p>Hello {{ userName }}.</p>
-        <p>
-          Based on your
-          <a href="{{ userUrl }}" target="_blank">Spotify profile</a>, we've
-          found the following events that you might be interested in.
-        </p>
+    <div *ngIf="show_user">
+      <div class="row" id="profile">
+        <div class="col-3">
+          <img src="{{ userImage }}" alt="" class="img-thumbnail" />
+        </div>
+        <div class="col" id="userInfo">
+          <p>Hello {{ userName }}.</p>
+          <p>
+            Enter a location below and we'll match it with local events based on
+            your <a href="{{ userUrl }}" target="_blank">Spotify profile</a>.
+          </p>
+          <app-location-search
+            [external]="external"
+            (locationEvent)="compareArtistLocation($event)"
+          ></app-location-search>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col text-center">
-        <app-results [userArtist]="userArtist"></app-results>
+
+    <div *ngIf="show_events">
+      <div class="row">
+        <div class="col text-center">
+          <app-results [event_list]="matched_artistToLocation"></app-results>
+        </div>
       </div>
     </div>
   </div>
