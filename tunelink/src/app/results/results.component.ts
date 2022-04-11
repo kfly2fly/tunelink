@@ -12,9 +12,6 @@ export class ResultsComponent implements OnInit {
   @Input() artist_list: IArtist[] = [];
   @Input() event_list: IEvent[] = [];
 
-  private ticketmaster_consumerkey: string = "bWZmR0G8KZUu7LsDQATWUhJUQ8MnPCN6";
-  private ticketmaster_consumersecret: string = "2yjbTtCMztfAZsQN";
-  
   constructor() { }
 
   ngOnInit(): void {
