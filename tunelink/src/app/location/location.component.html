@@ -1,9 +1,15 @@
 <div id="bg_art">
-  <div class="container">
-      <div class="row p-5">
+  <div class="container display">
+    <div *ngIf="show_header" class="row p-5 header">
       <div class="col text-center">
         <h3>See upcoming events for a location.</h3>
       </div>
     </div>
-    <app-location-search [external]="external"></app-location-search>
+    <div class="row">
+      <app-location-search
+        (header_display)="toggle_header($event)"
+        [external]="external"
+      ></app-location-search>
+    </div>
+  </div>
 </div>

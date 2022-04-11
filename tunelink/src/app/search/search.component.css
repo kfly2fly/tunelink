@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 #bg_art {
   display: flex;
   flex-direction: row;
@@ -26,9 +30,32 @@ img {
   object-fit: cover;
 }
 
+.cell-style {
+    border-radius: 25px;
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+}
+
 .option {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.option-text {
+    color: #000;
+}
+
+.spotify {
+    background-color: #1DB954;
+}
+
+.location {
+    background-color: #F15C07;
+}
+
+.artist {
+    background-color: #0799F1;
 }
