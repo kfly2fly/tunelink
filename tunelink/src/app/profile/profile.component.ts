@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
   public show_user: boolean = false;
   public show_events: boolean = false;
   public external: boolean = true;
+  public no_events: boolean = false;
 
   constructor() {}
 
@@ -124,7 +125,7 @@ export class ProfileComponent implements OnInit {
           data.items.forEach((result: any) => {
             let artist = result.track.album.artists[0].name;
             if (!this.userArtist.includes(artist)) {
-                // only add new artists to list
+              // only add new artists to list
               this.userArtist.push(artist);
             }
           });
@@ -144,22 +145,33 @@ export class ProfileComponent implements OnInit {
   compareArtistLocation = ($event: any) => {
     // copy $event to a local array so we can splice pushed events
     this.events_list = JSON.parse(JSON.stringify($event));
-    
+
     // compare events_list for matches against userArtist
-    (this.userArtist).forEach((artist: string) => {
-        (this.events_list).forEach((event: IEvent, index: number) => {
-            if ((event.artists).includes(artist)) {
-                this.matched_artistToLocation.push(event);
-                this.events_list.splice(index, 1);
-            }
-        });
+    this.userArtist.forEach((artist: string) => {
+      this.events_list.forEach((event: IEvent, index: number) => {
+        if (event.artists.includes(artist)) {
+          this.matched_artistToLocation.push(event);
+          this.events_list.splice(index, 1);
+        }
+      });
     });
-    console.log(this.matched_artistToLocation);
-    console.log(this.events_list);
+
     if (this.matched_artistToLocation.length >= 1) {
-        this.show_events = true;
+      // match found, display results
+      this.show_events = true;
+    } else if (this.matched_artistToLocation.length == 0) {
+        this.no_events = true;
+    } else {
+      console.log('ERROR: invalid array length');
     }
   };
+
+  clear = ($event: any) => {
+    // this.reset();
+    this.matched_artistToLocation = [];
+    this.show_events = false;
+    this.no_events = false;
+  }
 
   reset = () => {
     this.userId = '';
@@ -171,5 +183,6 @@ export class ProfileComponent implements OnInit {
     this.show_search = true;
     this.show_user = false;
     this.show_events = false;
+    this.no_events = false;
   };
 }

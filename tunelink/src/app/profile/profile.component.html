@@ -4,7 +4,7 @@
       <div class="row p-5">
         <div class="col text-center">
           <h3>
-            Using your Spotify ID, you can find upcoming performances of artists
+            Use your Spotify ID to find upcoming performances of artists
             you listen to.
           </h3>
         </div>
@@ -30,8 +30,8 @@
 
     <div *ngIf="show_user">
       <div class="row" id="profile">
-        <div class="col-3">
-          <img src="{{ userImage }}" alt="" class="img-thumbnail" />
+        <div class="col-3" id="img-col">
+          <img src="{{ userImage }}" alt="Spotify profile image" id="user-img" />
         </div>
         <div class="col" id="userInfo">
           <p>Hello {{ userName }}.</p>
@@ -39,9 +39,11 @@
             Enter a location below and we'll match it with local events based on
             your <a href="{{ userUrl }}" target="_blank">Spotify profile</a>.
           </p>
-          <app-location-search
+          <app-location-search 
+            id="userLocation"
             [external]="external"
             (locationEvent)="compareArtistLocation($event)"
+            (clear_results)="clear($event)"
           ></app-location-search>
         </div>
       </div>
@@ -51,6 +53,14 @@
       <div class="row">
         <div class="col text-center">
           <app-results [event_list]="matched_artistToLocation"></app-results>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="no_events">
+      <div class="row">
+        <div class="col text-center no_events">
+            <h4>No artists that you listen to are performing in the location you specified.</h4>
         </div>
       </div>
     </div>
