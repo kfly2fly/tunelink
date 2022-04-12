@@ -1,12 +1,12 @@
 <div id="bg_art">
   <div class="container">
-    <div class="row p-5" id="inputHeader">
+    <div class="row" *ngIf="show_header">
       <div class="col text-center">
         <h3>See upcoming events for an artist.</h3>
       </div>
     </div>
     <div class="row" id="inputRow">
-      <div class="col" id="userInput">
+      <div class="col text-center">
         <form>
           <input
             type="text"
@@ -17,26 +17,36 @@
           />
         </form>
 
-        <button class="btn btn-dark" (click)="getArtistEvents()">Search</button>
+        <button class="btn btn-success" (click)="getArtist()">
+          Search
+        </button>
+        <button class="btn btn-secondary" (click)="clear()">Clear</button>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <div *ngIf="artist_selection; then selectArtist"></div>
-        <div *ngIf="result_status; then validResults"></div>
+        <div *ngIf="artist_selection; then select_artist"></div>
+        <div *ngIf="result_status; then valid_results"></div>
+        <div *ngIf="noResults; then no_results"></div>
 
-        <ng-template #selectArtist>
+        <ng-template #select_artist>
           <div class="row artist-display" *ngFor="let artist of artist_match">
             <div class="col">
-              <button (click)="getArtist(artist.id)">
+              <button (click)="getArtistEvents(artist.id)">
                 {{ artist.artist_name }}
               </button>
             </div>
           </div>
         </ng-template>
 
-        <ng-template #validResults>
+        <ng-template #valid_results>
           <app-results [event_list]="event_list"></app-results>
+        </ng-template>
+
+        <ng-template #no_results>
+          <div class="no_artists">
+            <h3>Your search returned no hits. Try again.</h3>
+          </div>
         </ng-template>
       </div>
     </div>

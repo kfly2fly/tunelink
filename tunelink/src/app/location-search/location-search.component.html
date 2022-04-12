@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <form>
+        <input
+          type="text"
+          name="location"
+          id="location"
+          placeholder="Enter a Location (City, State, Country, Venue, etc...)"
+          #place
+        />
+      </form>
+
+      <button class="btn btn-success" (click)="getLocations()">Search</button>
+      <button class="btn btn-secondary" (click)="clear()">Clear</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div *ngIf="location_status; then select_location"></div>
+      <div *ngIf="events_status && !external; then valid_events"></div>
+      <div *ngIf="no_location; then no_locations"></div>
+
+      <ng-template #select_location>
+        <div class="row" id="results_header">
+          <div class="col">
+            <p>
+              Choose an option that best matches the location you want.<br />
+              If no option is correct, enter a more specific search.
+            </p>
+          </div>
+        </div>
+        <div
+          class="row"
+          id="location-display"
+          *ngFor="let location of location_results"
+        >
+          <div class="col text-center">
+            <button
+              class="location_option"
+              (click)="getLocationEvents(location)"
+            >
+              {{ location.name }}
+            </button>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #valid_events>
+        <app-results id="event_output" [event_list]="event_list"></app-results>
+      </ng-template>
+
+      <ng-template #no_locations>
+        <div class="no_results"><h3>Your search returned no hits. Try again.</h3></div>
+      </ng-template>
+    </div>
+  </div>
+</div>

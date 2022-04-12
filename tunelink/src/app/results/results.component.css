@@ -1,9 +1,21 @@
+table {
+   border: 1px solid #000; 
+   width: 100%;
+}
+
+thead > th {
+   border: 1px solid #000; 
+}
+
 #results {
-  border: 3px solid #f00;
+  border: 3px solid #00f;
   background-color: antiquewhite;
 
   height: 50vh;
+  width: 100%;
   overflow-y: scroll;
+
+  margin: 2em;
 }
 
 .event_row:nth-child(even) {
