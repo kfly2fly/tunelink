@@ -10,10 +10,11 @@
 </ul>
 
 # Tunelink
+<img src="./tunelink/src/assets/logo.png">
 
 ## Project Description
 
-TuneLink is a web app designed to generate musical event listings based on user preferences. Those preferences can be used to search for events either by location, by a particular artist, or by using a Spotify account ID.s
+TuneLink is a web app designed to generate musical event listings based on user preferences. Those preferences can be used to search for events either by location, by a particular artist, or by using a Spotify account ID.
 
 ## Motivation
 
@@ -23,6 +24,7 @@ Finding a msical event to attend often involves having to visit multiple website
 TuneLink is currently hosted locally. 
 <ol>
     <li>Clone this repository and from the tunelink directory run `ng serve`.</li>
+    <li>Run the command: 'npm install'</li>
     <li>Navigate to `http://localhost:4200/`</li>
 </ol>
 
