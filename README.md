@@ -28,8 +28,20 @@ At this stage in development, TuneLink can only be used locally on a user's syst
 </ol>
 
 ## Demonstrations
+<div align="center">
+Spotify Search Feature Demonstration
+</div>
+![Spotify Demo](https://github.com/WebProject-CSEE5590/project/blob/e1902b36cff79029d41ec966ad79e0eaf93e3f2b/report/spotify_demo.gif)
 
---
+<div align="center">
+Location Search Feature Demonstration
+</div>
+![](./report/location_demo.gif)
+
+<div align="center">
+Artist Search Feature Demonstration
+</div>
+![](./report/artist_demo.gif)
 
 ### Footnote
 
