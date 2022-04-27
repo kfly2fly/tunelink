@@ -1,4 +1,6 @@
-# CSEE 5590-0002/COMP-SCI 490-0002: Web/Mobile Programming
+<div align="center">
+<img src="./tunelink/src/assets/logo.png">
+</div>
 
 ## Development Team
 
@@ -9,24 +11,32 @@
     <li>Jasmine Naraine :: jnytc@umsystem.edu</li>
 </ul>
 
-# Tunelink
-<img src="./tunelink/src/assets/logo.png">
 
-## Project Description
 
-TuneLink is a web app designed to generate musical event listings based on user preferences. Those preferences can be used to search for events either by location, by a particular artist, or by using a Spotify account ID.
+## TuneLink Project Description
 
-## Motivation
-
-Finding a msical event to attend often involves having to visit multiple websites that either cater to an artist or a venue which can prove to be very time-consuming. TuneLink attempts to overcome this by using APIs to bring all relevant information to a single interface.u
+TuneLink is a web application that operates as a search engine for finding concerts/events that the user may be interested in. As live music enthusiasts, TuneLink allows the user to view concerts within an area that they might be interested in. The application's search algorithm factors in personal music preference along with other factors to return a list of future events. Those preferences can be used to search for events either by location, by a particular artist, or by using a Spotify account ID.  When a user selects an event, information regarding it is displayed on the UI such as the location and time.  Several online services have concert search engines, but each comes with advantages and drawbacks. TuneLink seeks to bridge such features by allowing a user to access this information with one action.
 
 ## How to Run TuneLink
-TuneLink is currently hosted locally. 
+
+At this stage in development, TuneLink can only be used locally on a user's system.   The procedure for starting the TuneLink web application is as follows:
 <ol>
-    <li>Clone this repository and from the tunelink directory run `ng serve`.</li>
-    <li>Run the command: 'npm install'</li>
-    <li>Navigate to `http://localhost:4200/`</li>
+    <li>Clone this repository onto a local system</li>
+    <li>Navigate to the tunelink directory from a command line interface, run the command: <b>npm install</b><br>This will install all project dependencies.</li>
+    <li>Run the command: <b>ng serve</b></li>
+    <li>Once the Angular app as successfully compiled, navigate to <b>http://localhost:4200/</b></li>
 </ol>
+
+## Demonstrations
+
+### Spotify Search Feature Demonstration
+![Spotify Demo](./report/spotify_demo.gif)
+
+### Location Search Feature Demonstration
+![](./report/location_demo.gif)
+
+### Artist Search Feature Demonstration
+![](./report/artist_demo.gif)
 
 ### Footnote
 
