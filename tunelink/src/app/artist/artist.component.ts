@@ -11,7 +11,8 @@ export class ArtistComponent implements OnInit {
   @ViewChild('artist', { static: false }) artist: ElementRef<HTMLInputElement> =
     {} as ElementRef;
 
-  private songkick_key: string = '8NUFX7nR2KeXLUKt';
+  // private songkick_key: string = '8NUFX7nR2KeXLUKt';
+  private songkick_key: string | undefined = process.env["SONGKICK_KEY"]
   private ticketmaster_key: string = 'hXhy6hDyIa696MFmRDkkvSRJqhknBt4U';
   private ticketmaster_secret: string = 'u1pPGdD1LFK764GV';
   public artist_match: IArtist[] = [];
@@ -30,6 +31,7 @@ export class ArtistComponent implements OnInit {
   getArtist = () => {
     this.reset();
     console.log(this.artist.nativeElement.value);
+    console.log(this.songkick_key)
     // Get songkick ID number of all matching artists
     fetch(
       `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${this.ticketmaster_key}&keyword=${this.artist.nativeElement.value}`
