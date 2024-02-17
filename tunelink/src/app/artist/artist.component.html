@@ -25,11 +25,11 @@
     </div>
     <div class="row">
       <div class="col">
-        <div *ngIf="artist_selection; then select_artist"></div>
+        <!-- <div *ngIf="artist_selection; then select_artist"></div> -->
         <div *ngIf="result_status; then valid_results"></div>
         <div *ngIf="noResults; then no_results"></div>
 
-        <ng-template #select_artist>
+        <!-- <ng-template #select_artist>
           <div class="row artist-display" *ngFor="let artist of artist_match">
             <div class="col">
               <button (click)="getArtistEvents(artist.id)">
@@ -37,7 +37,7 @@
               </button>
             </div>
           </div>
-        </ng-template>
+        </ng-template> -->
 
         <ng-template #valid_results>
           <app-results [event_list]="event_list"></app-results>

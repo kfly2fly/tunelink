@@ -105,5 +105,8 @@
       }
     }
   },
-  "defaultProject": "tunelink"
+  "defaultProject": "tunelink",
+  "cli": {
+    "analytics": false
+  }
 }

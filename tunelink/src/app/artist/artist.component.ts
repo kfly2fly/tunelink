@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { IArtist } from 'src/artist-data';
 import { IEvent } from 'src/event-data';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-artist',
@@ -11,7 +12,9 @@ export class ArtistComponent implements OnInit {
   @ViewChild('artist', { static: false }) artist: ElementRef<HTMLInputElement> =
     {} as ElementRef;
 
-  private songkick_key: string = '8NUFX7nR2KeXLUKt';
+  private songkick_key: string = environment.songkickKey;
+  private ticketmaster_key: string = environment.ticketmasterKey;
+  private ticketmaster_secret: string = environment.ticketmasterSecret;
   public artist_match: IArtist[] = [];
   public event_list: IEvent[] = [];
   public artist_list: string[] = [];
@@ -27,74 +30,44 @@ export class ArtistComponent implements OnInit {
 
   getArtist = () => {
     this.reset();
-
+    console.log(this.artist.nativeElement.value);
+    console.log(this.songkick_key)
     // Get songkick ID number of all matching artists
     fetch(
-      `https://api.songkick.com/api/3.0/search/artists.json?apikey=${this.songkick_key}&query=${this.artist.nativeElement.value}`
+      `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${this.ticketmaster_key}&keyword=${this.artist.nativeElement.value}`
     )
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // TESTING
-        data.resultsPage.results.artist.forEach((result: any) => {
+        data._embedded.events.forEach((result: any) => {
+          console.log(result);
           // only returns artists who are performing
-          if (result.onTourUntil != null) {
-            const newArtist: IArtist = {
-              artist_name: result.displayName,
-              id: result.id,
-              uri: result.uri,
-            };
-            this.artist_match.push(newArtist);
+          const concertDate = new Date(result.dates.start.localDate);
+          if (concertDate.getTime() < new Date().getTime()) {
+            return;
           }
-        });
-
-        switch (this.artist_match.length) {
-          case 0:
-            // searched artist has no events
-            this.noResults = true;
-            break;
-          case 1:
-            // automatically display results if only one artist
-            this.artist_selection = false;
-            this.getArtistEvents(this.artist_match[0].id);
-            this.result_status = true;
-            break;
-          default: // Allow the user to select a returned artist
-            this.artist_selection = true;
-            break;
-        }
-      });
-  };
-
-  getArtistEvents = (artist_id: string) => {
-      // retrieve data for all events that the artist is involved in
-    fetch(
-      `https://api.songkick.com/api/3.0/artists/${artist_id}/calendar.json?apikey=${this.songkick_key}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-          console.log(data);
-        data.resultsPage.results.event.forEach((result: any) => {
           // Capture all artists performing at event
           this.artist_list = [];
-          result.performance.forEach((artist: any) => {
-            this.artist_list.push(artist.displayName);
+          result._embedded?.attractions?.forEach((artist: any) => {
+            this.artist_list.push(artist.name);
           });
-
           // Construct event data
           const eventData: IEvent = {
-            event_name: result.displayName,
-            event_uri: result.uri,
-            status: result.status,
-            date: result.start.date,
-            lat: result.location.lat,
-            long: result.location.lng,
-            city: result.location.city,
-            venue: result.venue.displayName,
-            venue_uri: result.venue.uri,
+            event_name: result.name,
+            event_uri: result.url,
+            status: 'result.status,',
+            date: result.dates?.start?.localDate,
+            lat: 'result._embedded.venues[0].',
+            long: 'result.location.lng',
+            city: result._embedded?.venues[0]?.city?.name,
+            state: result._embedded?.venues[0]?.state?.stateCode, 
+            venue: result._embedded?.venues[0]?.name,
+            venue_uri: result._embedded?.venues[0]?.url,
             artists: this.artist_list,
           };
           this.event_list.push(eventData);
         });
+        console.log(this.event_list)
         this.artist_selection = false;
         this.result_status = true;
         this.show_header = false;
