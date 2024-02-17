@@ -41,11 +41,10 @@ export class ArtistComponent implements OnInit {
           console.log(result);
           // only returns artists who are performing
           const concertDate = new Date(result.dates.start.localDate);
-          console.log(concertDate);
           if (concertDate.getTime() < new Date().getTime()) {
             return;
           }
-
+          // Capture all artists performing at event
           this.artist_list = [];
           result._embedded?.attractions?.forEach((artist: any) => {
             this.artist_list.push(artist.name);

@@ -11,18 +11,18 @@
         />
       </form>
 
-      <button class="btn btn-success" (click)="getLocations()">Search</button>
+      <button class="btn btn-success" (click)="getLocationEvents()">Search</button>
       <button class="btn btn-secondary" (click)="clear()">Clear</button>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <div *ngIf="location_status; then select_location"></div>
+      <!-- <div *ngIf="location_status; then select_location"></div> -->
       <div *ngIf="events_status && !external; then valid_events"></div>
       <div *ngIf="no_location; then no_locations"></div>
 
-      <ng-template #select_location>
+      <!-- <ng-template #select_location>
         <div class="row" id="results_header">
           <div class="col">
             <p>
@@ -45,7 +45,7 @@
             </button>
           </div>
         </div>
-      </ng-template>
+      </ng-template> -->
 
       <ng-template #valid_events>
         <app-results id="event_output" [event_list]="event_list"></app-results>

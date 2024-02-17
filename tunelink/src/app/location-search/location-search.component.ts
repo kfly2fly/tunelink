@@ -29,6 +29,8 @@ export class LocationSearchComponent implements OnInit {
   private songkick_key: string = '8NUFX7nR2KeXLUKt';
   private mapbox_key: string =
     'pk.eyJ1Ijoid2luaXZpcyIsImEiOiJja3p6MWdhc20wNXNhM2pzMDd2b3B5bHczIn0.HZ585lasEzRwmZVPWK2aAg';
+  private ticketmaster_key: string = 'hXhy6hDyIa696MFmRDkkvSRJqhknBt4U';
+
   public search_query: string = '';
   public location_results: ILocation[] = [];
   public metro_area_id: string = '';
@@ -75,16 +77,45 @@ export class LocationSearchComponent implements OnInit {
     }
   };
 
-  getLocationEvents = (location: ILocation) => {
+  getLocationEvents = async () => {
     // fetch call to retrieve corresponding metro area id from geocode
     fetch(
-      `https://api.songkick.com/api/3.0/search/locations.json?location=geo:${location.lat},${location.long}&apikey=${this.songkick_key}`
-    )
+      `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${this.ticketmaster_key}&keyword=${this.place.nativeElement.value}`
+      )
       .then((response) => response.json())
       .then((data) => {
-        // first result of array is closest to geocoordinates
-        this.metro_area_id = data.resultsPage.results.location[0].metroArea.id;
-        this.locationCalendars(this.metro_area_id);
+        console.log(data)
+        data._embedded.events.forEach((result: any) => {
+          // only returns artists who are performing
+          const concertDate = new Date(result.dates.start.localDate);
+          if (concertDate.getTime() < new Date().getTime()) {
+            return;
+          }
+          // Capture all artists performing at event
+          this.artist_list = [];
+          result._embedded?.attractions?.forEach((artist: any) => {
+            this.artist_list.push(artist.name);
+          });
+
+          // Construct event data
+          const eventData: IEvent = {
+            event_name: result.name,
+            event_uri: result.url,
+            status: 'result.status,',
+            date: result.dates?.start?.localDate,
+            lat: 'result._embedded.venues[0].',
+            long: 'result.location.lng',
+            city: result._embedded?.venues[0]?.city?.name,
+            state: result._embedded?.venues[0]?.state?.stateCode, 
+            venue: result._embedded?.venues[0]?.name,
+            venue_uri: result._embedded?.venues[0]?.url,
+            artists: this.artist_list,
+          };
+          this.event_list.push(eventData);
+        });
+        this.location_status = false;
+        this.events_status = true;
+        this.locationEvent.emit(this.event_list); // emit event_list to parent
       });
   };
 
