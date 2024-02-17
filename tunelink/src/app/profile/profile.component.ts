@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IProfile } from 'src/spotify-profile';
 import { IEvent } from 'src/event-data';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -11,8 +12,8 @@ export class ProfileComponent implements OnInit {
   @ViewChild('user_id', { static: false })
   user_id: ElementRef<HTMLInputElement> = {} as ElementRef;
 
-  private spotify_clientId: string = 'afbdab91d8214fbb979660933ccd05e1';
-  private spotify_clientSecret: string = 'f3007731ce2742939c331ee1564ceb06';
+  private spotify_clientId: string = environment.spotifyClientId;
+  private spotify_clientSecret: string = environment.spotifyClientSecret;
   public spotify_token: string = '';
 
   public userId: string = '';

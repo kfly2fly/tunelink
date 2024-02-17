@@ -7,6 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { IEvent } from 'src/event-data';
 import { ILocation } from 'src/location-data';
 
@@ -26,10 +27,9 @@ export class LocationSearchComponent implements OnInit {
   @Output() locationEvent = new EventEmitter<IEvent[]>(); // returns list of events to component that called app-location-search
   @Output() clear_results = new EventEmitter<boolean>();   // emits to parent component to clear results
 
-  private songkick_key: string = '8NUFX7nR2KeXLUKt';
-  private mapbox_key: string =
-    'pk.eyJ1Ijoid2luaXZpcyIsImEiOiJja3p6MWdhc20wNXNhM2pzMDd2b3B5bHczIn0.HZ585lasEzRwmZVPWK2aAg';
-  private ticketmaster_key: string = 'hXhy6hDyIa696MFmRDkkvSRJqhknBt4U';
+  private songkick_key: string = environment.songkickKey;
+  private mapbox_key: string = environment.mapboxKey;
+  private ticketmaster_key: string = environment.ticketmasterKey;
 
   public search_query: string = '';
   public location_results: ILocation[] = [];
