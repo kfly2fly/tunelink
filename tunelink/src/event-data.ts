@@ -6,6 +6,7 @@ export interface IEvent {
     lat: string;
     long: string;
     city: string;
+    state: string;
     venue: string;
     venue_uri: string;
     artists: string[];

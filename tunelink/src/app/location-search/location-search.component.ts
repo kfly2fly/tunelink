@@ -110,6 +110,7 @@ export class LocationSearchComponent implements OnInit {
             lat: result.location.lat,
             long: result.location.lng,
             city: result.location.city,
+            state: 'hi',
             venue: result.venue.displayName,
             venue_uri: result.venue.uri,
             artists: this.artist_list,
