@@ -36,6 +36,7 @@ export class LocationSearchComponent implements OnInit {
   public metro_area_id: string = '';
   public event_list: IEvent[] = [];
   public artist_list: string[] = [];
+  
 
   public location_status: boolean = false;
   public events_status: boolean = false;
@@ -50,7 +51,7 @@ export class LocationSearchComponent implements OnInit {
       this.reset();
       this.search_query = encodeURIComponent(this.place.nativeElement.value);
       this.header_display.emit(false); // hide "See upcoming events.." header
-
+      
       // Retrieve geocode for search query
       await fetch(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.search_query}.json?types=postcode,place,address,poi&fuzzyMatch=true&autocomplete=true&access_token=${this.mapbox_key}`
@@ -79,13 +80,15 @@ export class LocationSearchComponent implements OnInit {
 
   getLocationEvents = async () => {
     // fetch call to retrieve corresponding metro area id from geocode
+    // const segment = encodeURIComponent(JSON.stringify(['Music']));
+    const segment = '[Music]'
     fetch(
-      `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${this.ticketmaster_key}&keyword=${this.place.nativeElement.value}`
+      `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${this.ticketmaster_key}&keyword=${this.place.nativeElement.value}&size=100&segmentName=${segment}`
       )
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-        data._embedded.events.forEach((result: any) => {
+        data._embedded?.events.forEach((result: any) => {
           // only returns artists who are performing
           const concertDate = new Date(result.dates.start.localDate);
           if (concertDate.getTime() < new Date().getTime()) {
