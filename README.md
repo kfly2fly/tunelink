@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./public/logo.png">
+<img src="./tunelink/src/assets/logo.png">
 </div>
 
 ## Development Team
@@ -30,14 +30,18 @@ At this stage in development, TuneLink can only be used locally on a user's syst
 ## Demonstrations
 
 ### Spotify Search Feature Demonstration
-![Spotify Demo](./public/spotify_demo.gif)
+![Spotify Demo](./report/spotify_demo.gif)
 
 ### Location Search Feature Demonstration
-![](./public/location_demo.gif)
+![](./report/location_demo.gif)
 
 ### Artist Search Feature Demonstration
-![](./public/artist_demo.gif)
+![](./report/artist_demo.gif)
 
 ### Footnote
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
