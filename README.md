@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./tunelink/src/assets/logo.png">
+<img src="./public/logo.png">
 </div>
 
 ## Development Team
@@ -30,13 +30,13 @@ At this stage in development, TuneLink can only be used locally on a user's syst
 ## Demonstrations
 
 ### Spotify Search Feature Demonstration
-![Spotify Demo](./report/spotify_demo.gif)
+![Spotify Demo](./public/spotify_demo.gif)
 
 ### Location Search Feature Demonstration
-![](./report/location_demo.gif)
+![](./public/location_demo.gif)
 
 ### Artist Search Feature Demonstration
-![](./report/artist_demo.gif)
+![](./public/artist_demo.gif)
 
 ### Footnote
 
